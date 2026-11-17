@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bookhive Quiz</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f1ea;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.quiz {
+    background: white;
+    width: 320px;
+    margin: 60px auto;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #aaa;
+}
+
+h2 {
+    color: #263c50;
+}
+
+p {
+    color: #444;
+    line-height: 1.5;
+}
+
+button {
+    background: #263c50;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 8px;
+    width: 90%;
+}
+
+button:hover {
+    background: #42647e;
+}
+
+#result {
+    color: darkgreen;
+    font-weight: bold;
+}
+
+#next {
+    background: #b47745;
+}
+
+#next:hover {
+    background: #8c5730;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz">
+
+    <h2>Bookhive Quiz</h2>
+
+    <p id="question">
+        Which section provides digital books?
+    </p>
+
+    <button onclick="checkAnswer('A')">
+        A. E-Books
+    </button>
+
+    <button onclick="checkAnswer('B')">
+        B. Sports
+    </button>
+
+    <button onclick="checkAnswer('C')">
+        C. Clothing
+    </button>
+
+    <p id="result"></p>
+
+    <button id="next" onclick="nextQuestion()">
+        Next
+    </button>
+
+</div>
+
+<script>
+
+let questions = [
+    "Which section provides digital books?",
+    "What is the benefit of a book subscription?",
+    "Which device is used to read e-books?",
+    "Which section helps users find new books?",
+    "What is an audiobook?",
+    "Which format is commonly used for e-books?",
+    "What is the main purpose of a digital library?",
+    "Which feature helps users save books for later?",
+    "What does a book review provide?",
+    "Which service allows users to read books online?"
+];
+
+let answers = [
+    "A", "A", "C", "A", "B",
+    "C", "B", "A", "C", "B"
+];
+
+let options = [
+    ["E-Books", "Sports", "Clothing"],
+    ["Unlimited Reading", "Cooking", "Shopping"],
+    ["Television", "Refrigerator", "E-Reader"],
+    ["Book Recommendations", "Music Player", "Gallery"],
+    ["Printed Book", "Recorded Book", "Picture Book"],
+    ["MP3", "JPG", "PDF"],
+    ["Sell Clothes", "Store Digital Books", "Play Games"],
+    ["Wishlist", "Calculator", "Camera"],
+    ["Book Price", "Book Size", "Reader's Opinion"],
+    ["Offline Shopping", "Online Subscription", "Food Delivery"]
+];
+
+let index = 0;
+
+function checkAnswer(choice) {
+
+    let result = document.getElementById("result");
+
+    if (choice === answers[index]) {
+        result.innerHTML = "Correct Answer!";
+    } else {
+        result.innerHTML = "Wrong Answer! Try again.";
+    }
+}
+
+function nextQuestion() {
+
+    index++;
+
+    if (index < questions.length) {
+
+        document.getElementById("question").innerHTML =
+            questions[index];
+
+        let buttons =
+            document.querySelectorAll(".quiz button");
+
+        buttons[0].innerHTML = "A. " + options[index][0];
+        buttons[1].innerHTML = "B. " + options[index][1];
+        buttons[2].innerHTML = "C. " + options[index][2];
+
+        document.getElementById("result").innerHTML = "";
+
+    } else {
+
+        document.getElementById("question").innerHTML =
+            "Quiz Completed! Thank you.";
+
+        document.getElementById("result").innerHTML =
+            "Explore more books at Bookhive!";
+
+        document.querySelectorAll(".quiz button")
+            .forEach(btn => btn.style.display = "none");
+    }
+}
+
+</script>
+
+</body>
+</html>
+
